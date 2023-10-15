@@ -12,8 +12,8 @@ from qa import retrieve_info, get_response, writehistory
 load_dotenv()
 openai_api_key = os.getenv('openaikey')
 # print(openai_api_key)
-av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
-av_ass = './img/robot.png'
+# av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
+# av_ass = './img/robot.png'
 
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
@@ -54,17 +54,17 @@ if "messages" not in st.session_state:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     if message["role"] == "user":
-        with st.chat_message(message["role"],avatar=av_us):
+        with st.chat_message(message["role"]):#,avatar=av_us):
             st.markdown(message["content"])
     else:
-        with st.chat_message(message["role"],avatar=av_ass):
+        with st.chat_message(message["role"]):#,avatar=av_ass):
             st.markdown(message["content"])
 
 if myprompt := st.chat_input("What is an AI model?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": myprompt})
     # Display user message in chat message container
-    with st.chat_message("user", avatar=av_us):
+    with st.chat_message("user"):#, avatar=av_us):
         st.markdown(myprompt)
         usertext = f"user: {myprompt}"
         writehistory(usertext)
