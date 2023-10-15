@@ -34,7 +34,7 @@ with st.sidebar:
 )
 
 
-st.title("💬 Chatbot") 
+st.title("💬 UniGPT") 
 # if "messages" not in st.session_state:
 #     # the role here can change the picture of chatbot
 #     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
@@ -65,7 +65,8 @@ for message in st.session_state.messages:
         with st.chat_message(message["role"]):#,avatar=av_ass):
             st.markdown(message["content"])
 
-if myprompt := st.chat_input("What is an AI model?"):
+# depends on the context we can provide different chat_input suggestion
+if myprompt := st.chat_input("ask me anything about your university"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": myprompt})
     # Display user message in chat message container
