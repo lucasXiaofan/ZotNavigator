@@ -10,7 +10,7 @@ def writehistory(text):
     f.close()
 
 def retrieve_info(query, db): # best_practice
-    similar_response = db.similarity_search(query, k=3)
+    similar_response = db.similarity_search(query, k=2)
 
     best_practice = [doc.page_content for doc in similar_response]
 
@@ -19,34 +19,38 @@ def retrieve_info(query, db): # best_practice
     return best_practice
 
 # TODO tweak around the prompt to generate better result
-def get_response(query, best_practice, openai_key):
+def get_response(question, advice,openai_key,year = 'first-year', major = 'undeclare',school = "UCI" ):
     llm = ChatOpenAI(openai_api_key=openai_key, temperature=0, model="gpt-3.5-turbo-16k-0613")
 
     template = """
     You are a Univeristy faculty that wish to help student thrive emotionally, academically, and socially. 
-    I will share a student's message with you and you will give me the best answer that 
-    I should send to this student based on past best practies, 
+    I will share a {year} {major} {school} student's message with you and you will give me the best answer that 
+    I should send to this student based on past advice, 
     and you will follow ALL of the rules below:
 
-    1/ Response should be very similar or even identical to the past best practies, 
+    1/ If there is link in the advice, include the link in exact way, 
 
-    2/ If the best practice are irrelevant, then say you don't know
+    2/ If the advice are irrelevant, then say you don't know
 
-    Below is a question I received from the student:
+    Below is a question I received from that student:
     {question}
 
-    Here is a list of best practies of how we normally respond to student in similar scenarios:
-    {best_practice}
+    Here is advice of how we normally respond to student in similar scenarios:
+    {advice}
 
     Please write the best response that I should send to this student:
     """
 
     prompt = PromptTemplate(
-        input_variables=["question", "best_practice"],
+        input_variables=["question", "advice", "year", "major", "school"],
         template=template
     )
 
     chain = LLMChain(llm=llm, prompt=prompt)
 
-    response = chain.run(question=query, best_practice=best_practice)
+    response = chain.run(question=question, 
+                        advice=advice,
+                        year = year,
+                        major = major,
+                        school = school)
     return response 

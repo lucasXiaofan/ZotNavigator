@@ -8,6 +8,7 @@ from time import sleep
 from parse import read_file
 from doc_process import embed_doc
 from qa import retrieve_info, get_response, writehistory
+from student_profile import profile_school,profile_year,major
 
 load_dotenv()
 openai_api_key = os.getenv('openaikey')
@@ -19,9 +20,10 @@ with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
     # so the first input is the label of the text_input
     # https://docs.streamlit.io/library/api-reference/widgets/st.text_input
-    school = st.text_input('school')
-    major  = st.text_input('majors')
-    years  = st.text_input('years')
+    school: str = st.selectbox("school", options=profile_school)
+    major: str = st.selectbox("major", options=major)
+    year: str = st.selectbox("year", options=profile_year)
+    
     uploaded_file = st.file_uploader(
     "Upload a pdf, docx, or txt file",
     type=["pdf", "txt"],
@@ -77,7 +79,20 @@ if myprompt := st.chat_input("What is an AI model?"):
             best_practice = retrieve_info(usertext,db)
         
         st.info(best_practice[0])
-        res  =   get_response(myprompt,best_practice,openai_api_key)
+        st.info(f'is school empty? {school == ""} {school} ')
+        st.info(f'is year empty? {year}')
+        st.info(f'is major empty? {major}')
+        
+        school = 'UCI' if school == '' else school
+        year = 'first-year' if year == '' else year
+        major = 'undeclared' if major == '' else major
+        
+        res  =   get_response(myprompt,
+                            best_practice,
+                            openai_api_key,
+                            school=school,
+                            year=year,
+                            major= major)
         response = res.split(" ")
         for r in response:
             full_response = full_response + r + " "

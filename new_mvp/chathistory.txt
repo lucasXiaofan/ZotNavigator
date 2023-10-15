@@ -42,3 +42,5 @@ user: can uci student use udemy for free?
 assistant: UCI students can search for UCI Udemy and use their UCInetid to enroll in Udemy courses for free. 
 user: explain attention mechanism
 assistant: I'm sorry, but I don't know the answer to your question about the attention mechanism. However, I can direct you to some resources that may help you understand it better. You can start by referring to your course materials or textbooks for an explanation. Additionally, you can reach out to your professor or classmates for further clarification. There are also online tutorials and articles available that provide detailed explanations of attention mechanisms in various contexts. I encourage you to explore these resources to gain a better understanding of the topic. 
+user: tell me about UCI cs
+user: tell about my college's cs
