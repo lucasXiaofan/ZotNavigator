@@ -12,8 +12,8 @@ from qa import retrieve_info, get_response, writehistory
 load_dotenv()
 openai_api_key = os.getenv('openaikey')
 # print(openai_api_key)
-av_us = 'img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
-av_ass = 'img/robot.png'
+av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
+av_ass = './img/robot.png'
 
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
