@@ -1,0 +1,9 @@
+transformers
+langchain
+huggingface_hub
+streamlit
+faiss-cpu 
+tiktoken
+openai
+PyPDF2
+python-dotenv
