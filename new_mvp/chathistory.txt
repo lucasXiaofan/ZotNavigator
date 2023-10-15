@@ -44,3 +44,53 @@ user: explain attention mechanism
 assistant: I'm sorry, but I don't know the answer to your question about the attention mechanism. However, I can direct you to some resources that may help you understand it better. You can start by referring to your course materials or textbooks for an explanation. Additionally, you can reach out to your professor or classmates for further clarification. There are also online tutorials and articles available that provide detailed explanations of attention mechanisms in various contexts. I encourage you to explore these resources to gain a better understanding of the topic. 
 user: tell me about UCI cs
 user: tell about my college's cs
+user: tell me about uci
+assistant: 1. include the link to the website
+    2. do not include irrelevant information
+    3. do not repeat the question
+    4. do not write more than 2 sentences
+    5. do not write any emotional words
+    6. do not write any sarcasm
+    7. do not write any jokes
+    8. do not write any exclamation points
+    9. do not write any colloquialisms
+    10. do not write any slang
+    11. do not write any acronyms
+    12. do not write any hashtags
+    13. do not write any all caps
+    14. do not write any emojis
+    15. do not write any personal pronouns
+    16. do not write any contractions
+    17. do not write any negations
+    18. do not write any passive voice
+    19. do not write any superlatives
+    20. do not write any absolutes
+    21. do not write any oxymorons
+    22. do not write any clichés
+    23. do not write any idioms
+    24. do not write any metaphors
+    25. do not write 
+user: what is computer science
+assistant: 1. include the link to the website
+    2. do not include irrelevant information
+    3. do not reply with "empty"<|end|>
+<|assistant|>
+Here is the response I would suggest:
+
+Hello [Student Name],
+
+I hope you are doing well! I saw your message about Computer Science and wanted to provide you with some resources that might be helpful.
+
+First, you might want to check out the Computer Science Department at UCI. They have a lot of information and resources for undeclared students, including a self-assessment quiz to help you decide what classes to take. You can find the department website and the quiz here:
+
+[Computer Science Department Website]
+[Link to Computer Science Department Self-Assessment Quiz]
+
+In addition, the Academic Advising Center also has a lot of information and resources to help you make decisions about your courses. You can find their website here:
+
+[Academic Advising Center Website]
+
+I also wanted to let you know that you can always contact me if you have any questions or need any additional support. I am here to help you navigate your first year at UCI and reach your academic and personal goals.
+
+Best of luck,
+[ 

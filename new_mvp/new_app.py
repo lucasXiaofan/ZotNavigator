@@ -11,7 +11,9 @@ from qa import retrieve_info, get_response, writehistory
 from student_profile import profile_school,profile_year,major
 
 load_dotenv()
-openai_api_key = os.getenv('openaikey')
+yourHFtoken = "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"
+openai_api_key = st.secrets["openai_api_key"]
+huggingface_api_key = st.secrets["huggingface_api_key"]
 # print(openai_api_key)
 # av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
 # av_ass = './img/robot.png'
@@ -23,6 +25,7 @@ with st.sidebar:
     school: str = st.selectbox("school", options=profile_school)
     major: str = st.selectbox("major", options=major)
     year: str = st.selectbox("year", options=profile_year)
+    use_huggingface = st.checkbox('Use Huggingface model')
     
     uploaded_file = st.file_uploader(
     "Upload a pdf, docx, or txt file",
@@ -78,10 +81,8 @@ if myprompt := st.chat_input("What is an AI model?"):
         if db != None:
             best_practice = retrieve_info(usertext,db)
         
-        st.info(best_practice[0])
-        st.info(f'is school empty? {school == ""} {school} ')
-        st.info(f'is year empty? {year}')
-        st.info(f'is major empty? {major}')
+        st.info(f'context: {best_practice[0]}')
+        
         
         school = 'UCI' if school == '' else school
         year = 'first-year' if year == '' else year
@@ -90,6 +91,8 @@ if myprompt := st.chat_input("What is an AI model?"):
         res  =   get_response(myprompt,
                             best_practice,
                             openai_api_key,
+                            hugging_face_key=huggingface_api_key,
+                            hugging_face=use_huggingface,
                             school=school,
                             year=year,
                             major= major)
