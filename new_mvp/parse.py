@@ -1,14 +1,14 @@
 
 import re
 from io import BytesIO
-import docx2txt
+
 from langchain.docstore.document import Document
 from langchain.document_loaders import PyPDFLoader
 from langchain.document_loaders import TextLoader
-from copy import deepcopy
+
 from PyPDF2 import PdfFileReader, PdfFileWriter,PdfReader
 # import fitz this cause problem for streamlit idkw
-from abc import abstractclassmethod, ABC 
+
 
 # !!!! not using mb5 from original file. 
 # check what is return from streamlit file uploader:
