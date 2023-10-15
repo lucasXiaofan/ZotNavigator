@@ -36,7 +36,7 @@ def get_response(question, advice,openai_key,hugging_face_key,hugging_face = Fal
                                        "temperature":0.2, "top_k":50, 
                                        "top_p":0.95, "eos_token_id":49155})
     else:
-        llm = ChatOpenAI(openai_api_key=openai_key, temperature=0, model="gpt-3.5-turbo-16k-0613")
+        llm = ChatOpenAI(openai_api_key=openai_key, max_tokens= 200, temperature=0.1, model="gpt-3.5-turbo-16k-0613")
 
     template = """
     You are a Univeristy faculty that wish to help student thrive emotionally, academically, and socially. 
@@ -54,7 +54,7 @@ def get_response(question, advice,openai_key,hugging_face_key,hugging_face = Fal
     Here is advice of how we normally respond to student in similar scenarios:
     {advice}
 
-    Please write the best response that I should send to this student:
+    Please write the helpful and concise response that I should send to this student:
     """
 
     prompt = PromptTemplate(
