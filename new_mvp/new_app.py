@@ -4,6 +4,7 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 from time import sleep
+from langchain.memory import ConversationBufferMemory
 
 from parse import read_file
 from doc_process import embed_doc
@@ -12,8 +13,8 @@ from student_profile import profile_school,profile_year,major
 
 load_dotenv()
 yourHFtoken = "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"
-openai_api_key = st.secrets["openai_api_key"]
-huggingface_api_key = st.secrets["huggingface_api_key"]
+openai_api_key = "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"#st.secrets["openai_api_key"]
+huggingface_api_key = yourHFtoken#st.secrets["huggingface_api_key"]
 # print(openai_api_key)
 # av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
 # av_ass = './img/robot.png'
@@ -64,6 +65,10 @@ for message in st.session_state.messages:
     else:
         with st.chat_message(message["role"]):#,avatar=av_ass):
             st.markdown(message["content"])
+            
+# initialize the memory here
+# TODO need a memory system to manage the number of memory for retrieval
+# memory = ConversationBufferMemory()
 
 # depends on the context we can provide different chat_input suggestion
 if myprompt := st.chat_input("ask me anything about your university"):
@@ -89,15 +94,17 @@ if myprompt := st.chat_input("ask me anything about your university"):
         year = 'first-year' if year == '' else year
         major = 'undeclared' if major == '' else major
         
-        res  =   get_response(myprompt,
-                            best_practice,
-                            openai_api_key,
+        res  =   get_response(question=myprompt,
+                            context=best_practice,
+                            openai_key=openai_api_key,
                             hugging_face_key=huggingface_api_key,
                             hugging_face=use_huggingface,
                             school=school,
                             year=year,
                             major= major)
+        # response = res['text'].split(" ")
         response = res.split(" ")
+        
         for r in response:
             full_response = full_response + r + " "
             message_placeholder.markdown(full_response + "▌")
