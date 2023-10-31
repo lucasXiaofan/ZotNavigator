@@ -8,12 +8,12 @@ from langchain.memory import ConversationBufferMemory
 
 from parse import read_file
 from doc_process import embed_doc
-from qa import retrieve_info, get_response, writehistory
+from qa import retrieve_info, get_response, writehistory,qa_with_doc_memory
 from student_profile import profile_school,profile_year,major
 
 load_dotenv()
 yourHFtoken = "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"
-openai_api_key = "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"#st.secrets["openai_api_key"]
+openai_api_key = "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"#st.secrets["openai_api_key"]
 huggingface_api_key = yourHFtoken#st.secrets["huggingface_api_key"]
 # print(openai_api_key)
 # av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
@@ -94,17 +94,30 @@ if myprompt := st.chat_input("ask me anything about your university"):
         year = 'first-year' if year == '' else year
         major = 'undeclared' if major == '' else major
         
-        res  =   get_response(question=myprompt,
-                            context=best_practice,
-                            openai_key=openai_api_key,
-                            hugging_face_key=huggingface_api_key,
-                            hugging_face=use_huggingface,
-                            school=school,
-                            year=year,
-                            major= major)
+        res = qa_with_doc_memory(
+            index= db,
+            context=best_practice,
+            openai_api_key= openai_api_key,
+            hugging_face_api_key=huggingface_api_key,
+            question=myprompt,
+            school=school,
+            year = year,
+            major=major,
+            hugging_face=use_huggingface
+            
+        )
+        # res  =   get_response(question=myprompt,
+        #                     context=best_practice,
+        #                     openai_key=openai_api_key,
+        #                     hugging_face_key=huggingface_api_key,
+        #                     hugging_face=use_huggingface,
+        #                     school=school,
+        #                     year=year,
+        #                     major= major)
         # response = res['text'].split(" ")
         response = res.split(" ")
-        
+        with st.expander("history/memory"):
+            st.session_state.memory
         for r in response:
             full_response = full_response + r + " "
             message_placeholder.markdown(full_response + "▌")
