@@ -1,17 +1,14 @@
 
 from langchain.chat_models import ChatOpenAI
 import streamlit as st
-from langchain.prompts import PromptTemplate
+from kor.extraction import create_extraction_chain
+from kor.nodes import Object, Text
+from langchain.prompts import PromptTemplate 
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import LLMChain, RetrievalQA
 from langchain.agents import AgentExecutor,Tool,ZeroShotAgent
 from langchain.chains.question_answering import load_qa_chain
-from langchain.prompts import (
-    ChatPromptTemplate,
-    MessagesPlaceholder,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+
 from langchain.llms import openai
 # from langchain import HuggingFaceHub
 from memory import memory_manager
@@ -62,6 +59,9 @@ new_template = """
     Here is context that related to the student and questions:
     {context}
     """
+
+
+
 ####################################################################
 # with memory 
 def qa_with_doc_memory(
@@ -100,12 +100,13 @@ def qa_with_doc_memory(
     else:
         st.session_state.memory.save_context({'input':question},{'output':''})
     llm = ChatOpenAI(openai_api_key=openai_api_key, max_tokens= 200, temperature=0.1, model="gpt-3.5-turbo-16k-0613")
-    chain = LLMChain(
+    chain_conversation = LLMChain(
         llm=llm,
         memory=st.session_state.memory,
         prompt= prompt,   
     )
-    return chain.run(question = question)
+
+    return chain_conversation.run(question = question)
 
 ###################################################################
 # TODO tweak around the prompt to generate better result
