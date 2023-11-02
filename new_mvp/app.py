@@ -1,24 +1,26 @@
-# right now is for learning purpose 
-import openai
 import streamlit as st
-import os
 from dotenv import load_dotenv
 from time import sleep
-from langchain.memory import ConversationBufferMemory
-
 from parse import read_file
 from doc_process import embed_doc
 from qa import retrieve_info, get_response, writehistory,qa_with_doc_memory
 from student_profile import profile_school,profile_year,major
 
 load_dotenv()
-yourHFtoken = "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"
-openai_api_key = "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"#st.secrets["openai_api_key"]
-huggingface_api_key = yourHFtoken#st.secrets["huggingface_api_key"]
-# print(openai_api_key)
-# av_us = './img/man.png'  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
-# av_ass = './img/robot.png'
+openai_api_key = "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"
+huggingface_api_key = "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"
 
+
+# Retrieving User info from dataset
+@st.cache_data
+def retrieve_user_info(User_email):
+    pass
+
+
+
+# User interface elements:
+# Including selection in school, major, year type. check if use hugging face model. 
+# Also a file upload to acquire enough information to make a response (need to be webscrape by itself)
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
     # so the first input is the label of the text_input
@@ -27,24 +29,15 @@ with st.sidebar:
     major: str = st.selectbox("major", options=major)
     year: str = st.selectbox("year", options=profile_year)
     use_huggingface = st.checkbox('Use Huggingface model')
-    
     uploaded_file = st.file_uploader(
     "Upload a pdf, docx, or txt file",
     type=["pdf", "txt"],
     help="Scanned documents are not supported yet!",
 )
-
-
 st.title("💬 UniGPT") 
-# if "messages" not in st.session_state:
-#     # the role here can change the picture of chatbot
-#     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
-    
-# for msg in st.session_state.messages:
-#     st.chat_message(msg["role"]).write(msg["content"])
 
 
-# read the file: 
+# Read the uploaded file
 db = None
 if uploaded_file:
     st.info('upload file successfully!')
@@ -54,16 +47,16 @@ if uploaded_file:
         st.info('file embedded successfully')
     
 
-# st.chat_input() is the chat bar
+# Check whether user is starting a new conversation or resume its previous conversation
 if "messages" not in st.session_state:
     st.session_state.messages = []
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     if message["role"] == "user":
-        with st.chat_message(message["role"]):#,avatar=av_us):
+        with st.chat_message(message["role"]):
             st.markdown(message["content"])
     else:
-        with st.chat_message(message["role"]):#,avatar=av_ass):
+        with st.chat_message(message["role"]):
             st.markdown(message["content"])
             
 # initialize the memory here
@@ -75,7 +68,7 @@ if myprompt := st.chat_input("ask me anything about your university"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": myprompt})
     # Display user message in chat message container
-    with st.chat_message("user"):#, avatar=av_us):
+    with st.chat_message("user"):
         st.markdown(myprompt)
         usertext = f"user: {myprompt}"
         writehistory(usertext)
@@ -94,7 +87,7 @@ if myprompt := st.chat_input("ask me anything about your university"):
         year = 'first-year' if year == '' else year
         major = 'undeclared' if major == '' else major
         
-        res = qa_with_doc_memory(
+        res, user_info = qa_with_doc_memory(
             index= db,
             context=best_practice,
             openai_api_key= openai_api_key,
@@ -106,15 +99,8 @@ if myprompt := st.chat_input("ask me anything about your university"):
             hugging_face=use_huggingface
             
         )
-        # res  =   get_response(question=myprompt,
-        #                     context=best_practice,
-        #                     openai_key=openai_api_key,
-        #                     hugging_face_key=huggingface_api_key,
-        #                     hugging_face=use_huggingface,
-        #                     school=school,
-        #                     year=year,
-        #                     major= major)
-        # response = res['text'].split(" ")
+
+        #Processing LLM response. 1. presenting result to User. 2. store response to memory
         response = res.split(" ")
         with st.expander("history/memory"):
             st.session_state.memory
@@ -123,49 +109,9 @@ if myprompt := st.chat_input("ask me anything about your university"):
             message_placeholder.markdown(full_response + "▌")
             sleep(0.1)
         message_placeholder.markdown(full_response)
-        asstext = f"assistant: {full_response}"
-        writehistory(asstext)       
+        asstext = f"assistant: {full_response}"   
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-# TODO first read the file 
-
-# file = read_file(with uploaded_file)
+        #Processing user_info: 1. Storing it to User cache 2. Store it to MongoDB
 
 
-
-# if show_full_doc:
-#     with st.expander("Document"):
-#         # Hack to get around st.markdown rendering LaTeX
-#         st.markdown(f"<p>{wrap_doc_in_html(file.docs)}</p>", unsafe_allow_html=True)
-
-
-# with st.form(key="qa_form"):
-#     query = st.text_area("Ask a question about the document")
-#     submit = st.form_submit_button("Submit")
-
-
-# if submit:
-#     if not is_query_valid(query):
-#         st.stop()
-
-#     # Output Columns
-#     answer_col, sources_col = st.columns(2)
-
-#     llm = get_llm(model=model, openai_api_key=openai_api_key, temperature=0)
-#     result = query_folder(
-#         folder_index=folder_index,
-#         query=query,
-#         return_all=return_all_chunks,
-#         llm=llm,
-#     )
-
-#     with answer_col:
-#         st.markdown("#### Answer")
-#         st.markdown(result.answer)
-
-#     with sources_col:
-#         st.markdown("#### Sources")
-#         for source in result.sources:
-#             st.markdown(source.page_content)
-#             st.markdown(source.metadata["source"])
-#             st.markdown("---")
