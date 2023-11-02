@@ -3,8 +3,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import CharacterTextSplitter
 
-def embed_doc(file, openai_key): # return embedding db
-    # file here is a tuple (type, file_content)
+# return embedding of the document
+def embed_doc(file, openai_key): 
     embedding = OpenAIEmbeddings(openai_api_key= openai_key)
     
     if file[0] == 'txt':

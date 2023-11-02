@@ -1,5 +1,6 @@
 from kor.extraction import create_extraction_chain
 from kor.nodes import Object, Text
+# Extract User info
 person_schema = Object(
         id="person",
         description="Personal information about a college student",
@@ -56,7 +57,6 @@ person_schema = Object(
         ]
 
     )
-
 def extract_User_info(llm, question):
     chain_user_info = create_extraction_chain(llm,person_schema)
     return chain_user_info(question)
