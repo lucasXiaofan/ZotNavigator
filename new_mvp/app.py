@@ -3,28 +3,28 @@ from dotenv import load_dotenv
 from time import sleep
 from parse import read_file
 from doc_process import embed_doc
-from qa import retrieve_info, get_response, writehistory,qa_with_doc_memory
+from qa import retrieve_info,qa_with_doc_memory
 from student_profile import profile_school,profile_year,major
+from pymongo import MongoClient 
+from database import get_database
 
+#-------------------------------------
+# Get database, API key
+dbname = get_database()
+
+collection_name = dbname["test"]
 load_dotenv()
 openai_api_key = "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"
 huggingface_api_key = "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"
 
 
-# Retrieving User info from dataset
-@st.cache_data
-def retrieve_user_info(User_email):
-    pass
-
-
-
-# User interface elements:
+#-------------------------------------------------------
+# User Interface elements:
 # Including selection in school, major, year type. check if use hugging face model. 
 # Also a file upload to acquire enough information to make a response (need to be webscrape by itself)
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
     # so the first input is the label of the text_input
-    # https://docs.streamlit.io/library/api-reference/widgets/st.text_input
     school: str = st.selectbox("school", options=profile_school)
     major: str = st.selectbox("major", options=major)
     year: str = st.selectbox("year", options=profile_year)
@@ -36,7 +36,7 @@ with st.sidebar:
 )
 st.title("💬 UniGPT") 
 
-
+#------------------------------------------------------------------------
 # Read the uploaded file
 db = None
 if uploaded_file:
@@ -46,10 +46,11 @@ if uploaded_file:
         db = embed_doc(file,openai_api_key)
         st.info('file embedded successfully')
     
-
+#-------------------------------------------------------
 # Check whether user is starting a new conversation or resume its previous conversation
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     if message["role"] == "user":
@@ -59,9 +60,6 @@ for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
             
-# initialize the memory here
-# TODO need a memory system to manage the number of memory for retrieval
-# memory = ConversationBufferMemory()
 
 # depends on the context we can provide different chat_input suggestion
 if myprompt := st.chat_input("ask me anything about your university"):
@@ -71,7 +69,6 @@ if myprompt := st.chat_input("ask me anything about your university"):
     with st.chat_message("user"):
         st.markdown(myprompt)
         usertext = f"user: {myprompt}"
-        writehistory(usertext)
         # Display assistant response in chat message container
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
@@ -88,15 +85,12 @@ if myprompt := st.chat_input("ask me anything about your university"):
         major = 'undeclared' if major == '' else major
         
         res, user_info = qa_with_doc_memory(
-            index= db,
-            context=best_practice,
-            openai_api_key= openai_api_key,
-            hugging_face_api_key=huggingface_api_key,
+            
             question=myprompt,
             school=school,
             year = year,
             major=major,
-            hugging_face=use_huggingface
+            context=best_practice
             
         )
 
@@ -113,5 +107,6 @@ if myprompt := st.chat_input("ask me anything about your university"):
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
         #Processing user_info: 1. Storing it to User cache 2. Store it to MongoDB
+        collection_name.insert_one(user_info['text']['data'])
 
 
