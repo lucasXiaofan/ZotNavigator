@@ -9,3 +9,4 @@ PyPDF2
 python-dotenv
 kor
 pymongo
+selenium
