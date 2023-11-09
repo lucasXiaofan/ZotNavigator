@@ -7,3 +7,5 @@ tiktoken
 openai
 PyPDF2
 python-dotenv
+kor
+pymongo
