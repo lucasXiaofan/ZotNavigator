@@ -10,3 +10,4 @@ python-dotenv
 kor
 pymongo
 selenium
+webdriver-manager

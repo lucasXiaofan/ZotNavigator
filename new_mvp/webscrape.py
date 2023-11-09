@@ -1,17 +1,36 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.common.by import By
-import json
+from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.firefox.servi
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+import webbrowser
 
-driver = webdriver.Firefox(service=Service('/snap/bin/geckodriver'))
-driver.implicitly_wait(10)
-driver.get("https://changeofmajor.uci.edu/school-of-information-and-computer-sciences/#cgs")
+def open_google_with_browser():
+    try:
+        # Try using Chrome
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+    except:
+        # try:
+        #     # If Chrome is not available, try using Firefox
+        #     driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+        # except:
+        try:
+            # If Firefox is not available, try using Edge
+            driver = webdriver.Edge(EdgeChromiumDriverManager().install())
+        except Exception as e:
+            # If none of the browsers are available, print an error message
+            print("No supported browser found or WebDriver issue encountered.")
+            print("Error:", e)
+            return
 
-with open('departments_requirements.json', 'w') as file:
-    json.dump([
-        {
-            'department_name': table.find_element(By.CSS_SELECTOR, "tbody tr:first-child th.dept-name").text,
-            'requirements': {cells[0].text: cells[1].text for cells in [row.find_elements(By.TAG_NAME, "td") for row in table.find_elements(By.CSS_SELECTOR, "tbody tr:nth-child(n+3)")] }        } for table in driver.find_elements(By.CSS_SELECTOR, "table")
-    ], file, indent=4)
+    # Open Google
+    driver.get("https://www.google.com")
 
-driver.quit()
+    # You can add a delay here if you want to keep the browser open for a while
+    # import time
+    # time.sleep(10)
+
+    # Close the browser
+    driver.quit()
+
+if __name__ == "__main__":
+    open_google_with_browser()
