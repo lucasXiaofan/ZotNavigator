@@ -9,7 +9,7 @@ def embed_doc(file, openai_key):
     
     if file[0] == 'txt':
         text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=0)
-        chunks = text_splitter.create_documents(file[1])
+        chunks = text_splitter.create_documents([file[1]])
     elif file[0] == 'pdf':
         text = ""
         for page in file[1].pages:
@@ -19,6 +19,7 @@ def embed_doc(file, openai_key):
             chunk_overlap = 100,
             length_function = len
         )
-        chunks = text_splitter.split_text(text=text)
+        # texts = text_splitter.split_text(text=text)
+        chunks = text_splitter.create_documents([text])
     return FAISS.from_documents(chunks, embedding)
     

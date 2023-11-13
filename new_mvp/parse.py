@@ -17,7 +17,9 @@ def simplePDFloader(file): # not file_path, lol
     return ('pdf', PdfReader(file))
 
 def simpleTextLoader(file):
-    return ('txt',[file.read().decode()])
+    text = file.read().decode()
+    cleaned_text = text.replace('\ufeff', '').replace('\r\n', ' ')
+    return ('txt',cleaned_text)
 
 def read_file(file: BytesIO):
 #     """Reads an uploaded file and returns a File object"""

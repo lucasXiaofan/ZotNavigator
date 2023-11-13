@@ -38,8 +38,11 @@ st.title("💬 UniGPT")
 
 #------------------------------------------------------------------------
 # Read the uploaded file
-db = None
-if uploaded_file:
+if 'id' not in st.session_state:
+    st.session_state.id = 0
+    st.session_state.db = None
+if uploaded_file and uploaded_file.id != st.session_state.id:
+    st.session_state.id  = uploaded_file.id
     st.info('upload file successfully!')
     file = read_file(uploaded_file)
     with st.spinner("Indexing document... This may take a while⏳"):
