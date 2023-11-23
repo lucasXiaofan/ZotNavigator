@@ -4,7 +4,7 @@ from time import sleep
 from parse import read_file
 from doc_process import embed_doc
 from qa import retrieve_info,qa_with_doc_memory
-from student_profile import profile_school,profile_year,major
+from student_profile import profile_school,profile_year,major,up_to_date_info
 from pymongo import MongoClient 
 from database import get_database
 
@@ -22,10 +22,20 @@ huggingface_api_key = "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"
 # User Interface elements:
 # Including selection in school, major, year type. check if use hugging face model. 
 # Also a file upload to acquire enough information to make a response (need to be webscrape by itself)
+if "school_database" not in st.session_state:
+    st.session_state.school_database = ''
+
+def Updated_info(profile_type):
+    if profile_type == 'school':
+        return up_to_date_info['school']
+
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
     # so the first input is the label of the text_input
-    school: str = st.selectbox("school", options=profile_school)
+    school: str = st.selectbox("school",  placeholder=" enter your school" ,index=None,options=profile_school,)
+    
+    st.write('your current school:', Updated_info('school'))
+    
     major: str = st.selectbox("major", options=major)
     year: str = st.selectbox("year", options=profile_year)
     use_huggingface = st.checkbox('Use Huggingface model')
@@ -48,6 +58,7 @@ if uploaded_file:
     
 #-------------------------------------------------------
 # Check whether user is starting a new conversation or resume its previous conversation
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 

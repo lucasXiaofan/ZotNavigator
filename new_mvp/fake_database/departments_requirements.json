@@ -1,0 +1,75 @@
+[
+    {
+        "department_name": "Business and Information Management",
+        "requirements": {
+            "Cumulative UC GPA": "Student must meet BOTH requirements:\nMinimum 2.0 GPA overall\nMinimum GPA of 2.0 in the quarter immediately preceding the change of major.",
+            "Course grades": "Students must complete the following requirements with an average GPA of 2.7 or higher at the time of application:\nMathematics 2A-B\nInformatics 41/42 or ICS/CSE 21/22 or ICS 31/32",
+            "Other": "While this major is jointly offered by the Donald Bren School of ICS and the Paul Merage School of Business, all administrative and advising functions for the students will be administered by the Donald Bren School of ICS Student Affairs Office.\nStudents who have completed some but not all prerequisites may be considered if sufficient space is available"
+        }
+    },
+    {
+        "department_name": "Computer Game Science",
+        "requirements": {
+            "Cumulative UC GPA": "Student must meet BOTH requirements:\nMinimum 2.0 GPA overall\nMinimum GPA of 2.0 in the quarter immediately preceding the change of major.",
+            "Course grades": "Completion of the following courses:\nICS 31\nICS 32\nOne or more of Math 2A, Math 2B, ICS 6B, ICS 6D,\nA minimum GPA of 2.5 and no grade less than a C in ALL courses taken from those listed above.",
+            "Other": "Student with more than 60 units will be reviewed on a case-by-case basis and may not be admitted to the major.\nStudents must complete the change of major requirements with an average quarter GPA of 2.0 or higher at the time of application and be in good academic standing.\nStudents must complete all change of major requirements at the time of application.\nStudent performance in coursework taken toward intended major\u2019s degree requirements will be factored into consideration during change of major review and may result in denial of admission into the major.",
+            "Note": "In Spring 2020, the B.S. in Computer Game Science was updated to the B.S. in Game Design & Interactive Media (GDIM). In order to ensure timely completion of degree requirements, please see the notes below:\nCurrent UCI students with 90 units or less are requested to apply for a change of major to the GDIM major.\nCurrent UCI students with more than 90 units are requested to apply for a change of major consideration to the CGS major.\nCGS will close to change of major requests effective close of the Winter Quarter 2022.\nCGS will accept change of majors in 2021-22 for prior catalogue years only.\nIt is not possible to graduate earlier than 4 years in the GDIM major at this time."
+        }
+    },
+    {
+        "department_name": "Computer Science",
+        "requirements": {
+            "Cumulative UC GPA": "3.0 UC GPA\n3.0 GPA for the quarter prior to changing major",
+            "Course grades": "A minimum GPA of 3.0 and no grade less than a C in ALL courses taken from those listed below. Completion of the following:\nICS 33, and\nMust complete three from: Math 2B, ICS 6B, ICS 6D, ICS 6N or Math 3A, Stats 67.\nNote: AP exam score not accepted as a grade and calculus must be completed prior to entering major.",
+            "Other": "Students must meet the following conditions at the time of the Change of Major application.\nHave an overall grade point average of 3.0 for all courses within the Bren School of ICS and the CS major.\nHave completed all change of major requirements listed above.\nHave completed no more than 90 units of course credit.\nBe in good academic standing and not have egregious or multiple citations for academic misconduct.\nNote: Student performance, including multiple repeats in coursework taken toward the intended major\u2019s degree requirements will be factored into consideration during the \u201cchange of major\u201d review and may result in denial of admission into the major."
+        }
+    },
+    {
+        "department_name": "Computer Science and Engineering",
+        "requirements": {
+            "Cumulative UC GPA": "2.7 overall and 2.7 quarterly GPA in the quarter immediately preceding the change of major request.",
+            "Course grades": "Minimum 3.0 GPA in prerequisite courses:\nMath 2A-B-D\nPhysics 7C-7D, 7LC-7LD\nICS 21-22 or CSE 31-32 or ICS 31-32 or CSE 41-42",
+            "Other": "Students admitted to the major in Computer Science and Engineering will be assigned to the Donald Bren School of Information and Computer Sciences or The Henry Samueli School of Engineering based on enrollment.\nStudents with more than 90 units will be reviewed on a case-by-case basis, provided they have made substantial progress in courses required for the major."
+        }
+    },
+    {
+        "department_name": "Data Science",
+        "requirements": {
+            "Cumulative UC GPA": "Students must meet BOTH requirements:\nCumulative UC GPA: 2.7 or higher\nQuarter GPA = 2.0 or higher",
+            "Course grades": "3.0 or higher average GPA and no grade lower than a C for ICS 31, ICS 32, and one of the following: Math 2A, Math 2B, Math 2D, ICS 6B, or ICS 6D.",
+            "Other": "Students will not be able to complete the degree in Data Science prior to Spring 2018.\nStudents with more than 60 units will be reviewed on a case-by-case basis and may not be admitted to the major."
+        }
+    },
+    {
+        "department_name": "Game Design & Interactive Media",
+        "requirements": {
+            "Cumulative UC GPA": "Students must meet BOTH requirements:\nMinimum 2.0 GPA overall\nMinimum GPA of 2.0 in the quarter immediately preceding the change of major.",
+            "Course grades": "Completion of the following courses with a minimum grade point average of 2.5 and no individual grade lower than a C:\nGDIM 25, GDIM 31, GDIM 51, and GDIM 61",
+            "Other": "90 units or less. Students with more than 90 units will not be admitted to the major.\nStudents must be in good academic standing and not have egregious or multiple violations of academic conduct in ICS courses.\nStudents must complete all change of major requirements at the time of application.\nStudent performance, including multiple repeats, in coursework taken toward intended major\u2019s degree requirements will be factored into consideration during change of major review and may result in denial of admission into the major.",
+            "Note": "In Spring 2020, the B.S. in Computer Game Science was updated to the B.S. in Game Design & Interactive Media (GDIM). In order to ensure timely completion of degree requirements, please see the notes below:\nCurrent UCI students with 90 units or less are requested to apply for a change of major to the GDIM major.\nCurrent UCI students with more than 90 units are requested to apply for a change of major consideration to the CGS major.\nCGS will close to change of major requests effective close of the Winter Quarter 2022.\nCGS will accept change of majors in 2021-22 for prior catalogue years only.\nIt is not possible to graduate earlier than 4 years in the GDIM major at this time."
+        }
+    },
+    {
+        "department_name": "Informatics",
+        "requirements": {
+            "Cumulative UC GPA": "Students must meet BOTH requirements:\nMinimum 2.0 GPA overall\nMinimum GPA of 2.0 in the quarter immediately preceding the change of major.",
+            "Course grades": "Completion of the following courses:\nICS 31\nICS 32\nOne or both of ICS 6B, Stats 7\nA minimum GPA of 2.5 and no grade less than a C in All courses taken from those listed above.",
+            "Other": "Students with more than 90 units will be reviewed on a case-by-case basis and may not be admitted to the major.\nStudents must complete the change of major requirements with an average quarter GPA of 2.0 or higher at the time of application and be in good academic standing.\nStudents must complete all change of major reqirements at the time of application.\nStudent performance in coursework taken toward intended major\u2019s degree requirements will be factored into consideration during change of major review and may result in denial of admission into the major."
+        }
+    },
+    {
+        "department_name": "Information and Computer Science",
+        "requirements": {
+            "Cumulative UC GPA": "2.0",
+            "Course grades": "2.0 average GPA or above in ICS 21 and 22 or Informatics 41 and 42, and one of the following: Math 2A, Math 2B, ICS 6B or ICS 6D"
+        }
+    },
+    {
+        "department_name": "Software Engineering",
+        "requirements": {
+            "Cumulative UC GPA": "Students must meet BOTH requirements:\nMinimum 2.0 GPA overall\nMinimum GPA of 2.0 in the quarter immediately preceding the change of major.",
+            "Course grades": "Completion of the following courses:\nICS 31\nICS 32\nOne or both of Math 2A, Math 2B, ICS 6B, ICS 6D\nA minimum GPA of 2.5 and no grade less than a C in All courses taken from those listed above.",
+            "Other": "Students with more than 60 units will be reviewed on a case-by-case basis and may not be admitted to the major.\nStudents must complete the change of major requirements with an average quarter GPA of 2.0 or higher at the time of application and be in good academic standing.\nStudents must complete all change of major requirements at the time of application.\nStudent performance in coursework taken toward intended major\u2019s degree requirements will be factored into consideration during change of major review and may result in denial of admission into the major."
+        }
+    }
+]
