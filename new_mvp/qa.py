@@ -69,13 +69,9 @@ person_schema = Object(
     )
 llm = ChatOpenAI(openai_api_key=openai_api_key, max_tokens= 200, temperature=0.1, model="gpt-3.5-turbo-16k-0613")
 
-# Accessory function:
-#  1. Managing memory of LLm, 
-def memory_manager(queue,query):
-    while len(queue) > 10: 
-        queue.pop(0)
-    queue.append(query)
-    return ", ".join(queue)
+if "memory" not in st.session_state:
+    st.session_state.memory = ConversationBufferMemory(memory_key="chat_history")
+    st.session_state.memory.save_context({'input':'hello!'},{'output':''})
 
 # 2. Retrieving user information 
 def retrieve_info(query, db): # best_practice
@@ -91,11 +87,10 @@ def qa_with_doc_memory(
     question,
     year,
     major,
-    school,
     context = 'empty',
 ):
     question_prompt = f"""
-                        You are a {school} Univeristy student staff that wish to help student thrive,
+                        You are a UCI Univeristy student staff,
                         I will share a {year} {major} student's message with you 
                         and you will give me the best answer that I should send to this student 
                         based on given context of student and question, 
@@ -109,12 +104,8 @@ def qa_with_doc_memory(
     prompt = PromptTemplate(
         input_variables=[ 'question','chat_history'],
         template=augment_prompt
-    )
-    
-    if "memory" not in st.session_state:
-        st.session_state.memory = ConversationBufferMemory(memory_key="chat_history")
-    else:
-        st.session_state.memory.save_context({'input':question},{'output':''})
+    )        
+    st.session_state.memory.save_context({'input':question},{'output':''})
     
     chain_conversation = LLMChain(
         llm=llm,

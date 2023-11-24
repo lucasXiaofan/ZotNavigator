@@ -14,8 +14,12 @@ person_schema = Object(
                 description = "A student's academic interest.",
             ),
             Text(
-                id="school",
-                description = "The university a college students attend.",
+                id="tags",
+                description = "student's personal interest, favorite",
+            ),
+            Text(
+                id="goals",
+                description = "student's personal, academic, goals",
             ),
             Text(
                 id = "year",
@@ -29,7 +33,6 @@ person_schema = Object(
             [
                 {"current_major": "computer science"},
                 {"intended_major": "computer science"},
-                {"school": "University of California, Irvine"},
                 {"year": "freshman"}
             ]
             ),
@@ -42,17 +45,24 @@ person_schema = Object(
                 ]
             ),
             (
-                "I'm a PhD student currently in Stanford University. I've studied 4 years in University of California, Irvine, majoring \
-                    in computer science. Now i wish to pursue computer engineering. Can you give me some resources on computer science?",
-                    [
-                        {"intended_major": "computer science", "school": ["Stanford University", "University of California, Irvine"]},
-                    ]
+                "I am looking for ML research opportunities do you have any suggestions?",
+                [
+                    {'goals':'Machine learning research'},
+                    {'tags':['ML','Research']},
+                ]
             ),
             (
-                "I'm ready to be a graduate student in University of California, Los Angeles. Before that I'm a graduate student in Harvard \
-                University. Can you give me some resources in UCLA?",
-                [{"school": ["Harvard University", "University of California, Los Angeles"]}]
-            )
+                "where can I find on campus music conference?",
+                [
+                    {'tags':['Music']},
+                ]
+            ),
+            (
+                "how can I report my professor?",
+                [
+                    {'tags':"None"},
+                ]
+            ),
 
         ]
 

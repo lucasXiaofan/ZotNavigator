@@ -32,9 +32,6 @@ def Updated_info(profile_type):
 with st.sidebar:
     # TODO need learn what is st.text_input, what is argument key means
     # so the first input is the label of the text_input
-    school: str = st.selectbox("school",  placeholder=" enter your school" ,index=None,options=profile_school,)
-    
-    st.write('your current school:', Updated_info('school'))
     
     major: str = st.selectbox("major", options=major)
     year: str = st.selectbox("year", options=profile_year)

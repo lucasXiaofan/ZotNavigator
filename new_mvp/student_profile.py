@@ -3,9 +3,8 @@ profile_year = ['first_year','second_year','third_year','fourth_year','fifth_yea
 major = ['Undeclared','computer science','economic','data science','computer science engineering']
 
 up_to_date_info = {
-    'school':'UCI',
-    'year':'',
-    'major':'',
-    'interest':[]
+    'year':'fourth year',
+    'major':'computer science',
+    'tags':['AI','Music','Social','Taco']
 }
 
