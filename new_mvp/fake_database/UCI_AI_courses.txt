@@ -1,0 +1,6 @@
+﻿
+COMPSCI 171. Introduction to Artificial Intelligence. 4 Units.
+COMPSCI 172B. Neural Networks and Deep Learning . 4 Units.
+COMPSCI 175. Project in Artificial Intelligence. 4 Units.
+COMPSCI 178. Machine Learning and Data-Mining. 4 Units.
+COMPSCI 184A. Artificial Intelligence in Biology and Medicine. 4 Units.

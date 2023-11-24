@@ -1,7 +1,7 @@
 import json
 
 # Open the JSON file
-dir = r"C:\Users\LangZheZR\Documents\GitHub\UniGPT\new_mvp\fake_database\events_data.json"
+dir = r"GitHub\UniGPT\new_mvp\fake_database\events_data.json"
 
 
 
@@ -52,7 +52,7 @@ def are_words_similar(word1, word2):
 
 # print(similarity_search(','.join(user_tag),'machine learning, natural language processing, student center'))
 # print(similarity_search('machine learning','mechanical engineering')) -> .81
-print(are_words_similar('Machine learning','physics'))
+# print(are_words_similar('Machine learning','physics'))
 # with open('./fake_database/events_data.json') as file:
 #     # Load the JSON data
 #     data = json.load(file)
