@@ -1,6 +1,7 @@
 # UniGPT
-aiming for get into grand finale, but it is not guaranteed.
-what is guaranteed is enjoy the learning process, and having fun of making idea come true. 
+
+pitch video: https://drive.google.com/drive/u/0/folders/1iYW3hGhGOcdMixS2J4TIDskoUDMzsTfq
+
 # Phase 1
 1. mainly working on the minimum viable prototype, with functions like:
    - web scraping,
