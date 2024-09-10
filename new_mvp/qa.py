@@ -10,7 +10,6 @@ from langchain.chains.question_answering import load_qa_chain
 
 
 # Constant vairable set up: including API, schema for extracting information from conversation, and LLM model
-openai_api_key = "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"
 person_schema = Object(
         id="person",
         description="Personal information about a college student",
@@ -67,7 +66,7 @@ person_schema = Object(
         ]
 
     )
-llm = ChatOpenAI(openai_api_key=openai_api_key, max_tokens= 200, temperature=0.1, model="gpt-3.5-turbo-16k-0613")
+# llm = ChatOpenAI(openai_api_key=openai_api_key, max_tokens= 200, temperature=0.1, model="gpt-4o-mini")
 
 # Accessory function:
 #  1. Managing memory of LLm, 

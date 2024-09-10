@@ -5,17 +5,15 @@ from parse import read_file
 from doc_process import embed_doc
 from qa import retrieve_info,qa_with_doc_memory
 from student_profile import profile_school,profile_year,major,up_to_date_info
-from pymongo import MongoClient 
+# from pymongo import MongoClient 
 from database import get_database
 
 #-------------------------------------
 # Get database, API key
-dbname = get_database()
+# dbname = get_database()
 
-collection_name = dbname["test"]
+# collection_name = dbname["test"]
 load_dotenv()
-openai_api_key = "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"
-huggingface_api_key = "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"
 
 
 #-------------------------------------------------------
@@ -118,6 +116,6 @@ if myprompt := st.chat_input("ask me anything about your university"):
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
         #Processing user_info: 1. Storing it to User cache 2. Store it to MongoDB
-        collection_name.insert_one(user_info['text']['data'])
+        # collection_name.insert_one(user_info['text']['data'])
 
 
