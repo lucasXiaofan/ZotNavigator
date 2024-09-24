@@ -2,9 +2,9 @@
 import re
 from io import BytesIO
 
-from langchain.docstore.document import Document
-from langchain.document_loaders import PyPDFLoader
-from langchain.document_loaders import TextLoader
+# from langchain.docstore.document import Document
+# from langchain.document_loaders import PyPDFLoader
+# from langchain.document_loaders import TextLoader
 
 from PyPDF2 import PdfFileReader, PdfFileWriter,PdfReader
 # import fitz this cause problem for streamlit idkw

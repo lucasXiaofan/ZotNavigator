@@ -11,3 +11,4 @@ kor
 pymongo
 selenium
 webdriver-manager
+llama-index             

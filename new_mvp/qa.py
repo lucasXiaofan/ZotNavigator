@@ -91,8 +91,12 @@ def qa_with_doc_memory(
     year,
     major,
     school,
-    context = 'empty',
+    context = [],
 ):
+    if context == []:
+        context = 'empty'
+    else:
+        context = " ".join(context)
     question_prompt = f"""
                         You are a {school} Univeristy student staff that wish to help student thrive,
                         I will share a {year} {major} student's message with you 
