@@ -1,0 +1,44 @@
+online version is a comprehensive information hub for computer science students 
+help student achieve their academic/career goal through navigating 
+1. relevant study platform 
+2. relevant incomming course
+3. relevant in campus events
+4. relevant campus resources
+5. relevant clubs
+6. relevant professor/phd
+7. relevant out campus events
+
+need student's year and major, and academic or career goal
+consider this scenerio:, assuming all student are uci students
+I am first year computer science student, my academic goal is start research in NLP
+1. relevant study platform 
+	1. rule: find online free resources or get from archieve high quality resource list, to return the resource that relevant to student's interest
+	2. https://lilianweng.github.io/
+	3. https://github.com/karpathy/nn-zero-to-hero
+	4. https://d2l.ai/
+	5. https://huggingface.co/learn/nlp-course/chapter1/1
+2. relevant incomming course
+	1. rule: get the current time, return incoming UCI course that relevant to student's interest, need assumption that first year student is doing low level course, while second-fourth year student can do high level courses
+	2. https://courselisting.ics.uci.edu/ugrad_courses/listing-course.php?year=2024&level=ALL&department=CS&program=ALL, using this website to find course that may relevant to student's interest
+3. relevant in campus events
+	1. there are https://cml.ics.uci.edu/aiml/, for other interest need find other high level events
+4. relevant campus resources
+	1. https://grad.uci.edu/prospective-students/graduate-preparation-programs/summer-undergraduate-research-fellowship/
+		1. there is summar research for any student that has academic goals in research 
+5. relevant clubs
+	1. find the discord for UCI club that relevant to student's interest
+		1. ex: https://aiclub.ics.uci.edu/
+6. relevant professor/phd
+	1. use https://csrankings.org/#/index?all&us or just search online to find professor/phd that has research interest same as student's goal 
+7. relevant out campus events
+	1. find relevant conference that relevant to user's interest
+		1. ex. https://2024.emnlp.org/
+
+for all the event, resources 
+there is valid time period, or application deadline, if current time already pass the deadline, don't show them to user
+
+for all course only provide the future course to student, not the course that happen in current quarter
+
+store the search word for all the resources event, course, people, not the exact url, since the url may change, ex emnlp the url for different year is different, we only want the most recent years 
+
+some resources are relatively independent to time, for example relevant study platform , https://acl2023-retrieval-lm.github.io/, https://learn.deeplearning.ai/, those can be store with url and description and name 
